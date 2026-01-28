@@ -65,12 +65,35 @@ button:hover {
 }
 </style>
 </head>
+<script>
+  const cart = [];
+  const cartEl = document.getElementById("cart");
+  const totalEl = document.getElementById("total");
 
+  function addToCart(name, price) {
+    cart.push({ name, price });
+    renderCart();
+  }
+
+  function renderCart() {
+    cartEl.innerHTML = "";
+    let total = 0;
+
+    cart.forEach(item => {
+      const li = document.createElement("li");
+      li.textContent = `${item.name} - ${item.price}đ`;
+      cartEl.appendChild(li);
+      total += item.price;
+    });
+
+    totalEl.textContent = total;
+  }
+</script>
 <body>
 
 <header>
-    <h1>🍜 QUÁN ĂN ONLINE</h1>
-    <p>Chọn món và thanh toán ngay</p>
+    <h1>🍜 QUÁN ĂN ONLINE LỚP 12A1</h1>
+    <p>Hãy chọn món để thanh toán ngay</p>
 </header>
 
 <div class="container">
@@ -130,9 +153,9 @@ function pay() {
         alert("Bạn chưa chọn món nào!");
     } else {
         alert(
-          "Thanh toán thành công!\n" +
+          "THANH TOÁN THÀNH CÔNG!\n" +
             "Tổng tiền: " + total.toLocaleString() + "đ\n" +
-            "Cảm ơn bạn ❤️"
+            "Cảm ơn bạn đã ủng hộ gian hàng của lớp 12A1 ❤️"
         );
         total = 0;
         count = 0;
