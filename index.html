@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Đặt Đồ Ăn Online</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f6f6f6;
+    margin: 0;
+}
+
+header {
+    background: #ff5722;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.container {
+    padding: 20px;
+}
+
+.food {
+    background: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+button {
+    background: #ff5722;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+.cart {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.total {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.pay {
+    margin-top: 15px;
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🍜 QUÁN ĂN ONLINE</h1>
+    <p>Chọn món và thanh toán ngay</p>
+</header>
+
+<div class="container">
+
+    <div class="food">
+        <span> Cà chua </span>
+        <span>10.000đ/200g</span>
+        <button onclick="add(10000)">Thêm</button>
+    </div>
+
+    <div class="food">
+        <span>Súp lơ baby</span>
+        <span>10.000/300g</span>
+        <button onclick="add(10000)">Thêm</button>
+    </div>
+
+    <div class="food">
+        <span>Củ dền</span>
+        <span>10.000/200g</span>
+        <button onclick="add(10000)">Thêm</button>
+    </div>
+  
+    <div class="food">
+        <span>Cải mù tạt</span>
+        <span> 5.000đ/mớ</span>
+        <button onclick="add(5000)">Thêm</button>
+    </div>
+  
+    <div class="food">
+        <span>Cải bó xôi</span>
+        <span>5.000đ/mớ</span>
+        <button onclick="add(5000)">Thêm</button>
+    </div> 
+
+    <div class="cart">
+        <h3>🛒 Giỏ hàng</h3>
+        <p id="count">Số món: 0</p>
+        <p class="total">Tổng tiền: <span id="total">0</span>đ</p>
+        <button class="pay" onclick="pay()">💳 Thanh toán</button>
+    </div>
+
+</div>
+
+<script>
+let total = 0;
+let count = 0;
+
+function add(price) {
+    total += price;
+    count++;
+    document.getElementById("total").innerText = total.toLocaleString();
+    document.getElementById("count").innerText = "Số món: " + count;
+}
+
+function pay() {
+    if (total === 0) {
+        alert("Bạn chưa chọn món nào!");
+    } else {
+        alert(
+          "Thanh toán thành công!\n" +
+            "Tổng tiền: " + total.toLocaleString() + "đ\n" +
+            "Cảm ơn bạn ❤️"
+        );
+        total = 0;
+        count = 0;
+        document.getElementById("total").innerText = "0";
+        document.getElementById("count").innerText = "Số món: 0";
+    }
+}
+</script>
+
+</body>
+</html>
