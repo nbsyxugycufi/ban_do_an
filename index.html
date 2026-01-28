@@ -163,35 +163,6 @@ function pay() {
         document.getElementById("count").innerText = "Số món: 0";
     }
 }
-<script>
-if ("Notification" in window) {
-  Notification.requestPermission();
-}
-</script><script>
-  let total = 0;
-  let count = 0;
-
-  function addItem(price) {
-    total += price;
-    count++;
-    document.getElementById("total").innerText = total.toLocaleString();
-    document.getElementById("count").innerText = "Số món: " + count;
-  }
-
-  function pay() {
-    if (total === 0) {
-      alert("Bạn chưa chọn món nào!");
-    } else {
-      alert(
-        "THANH TOÁN THÀNH CÔNG!\n" +
-        "Tổng tiền: " + total.toLocaleString() + "đ\n" +
-        "Cảm ơn bạn đã ủng hộ gian hàng ❤️"
-      );
-      total = 0;
-      count = 0;
-      document.getElementById("total").innerText = "0";
-      document.getElementById("count").innerText = "Số món: 0";
-    }
   }
 </script></script>
 
