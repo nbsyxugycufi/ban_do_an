@@ -170,5 +170,12 @@ function pay() {
 }
 </script>
 
-</body>
+</body><div id="bill" style="display:none; position:fixed; top:20%; left:50%; transform:translateX(-50%);
+background:#fff; padding:20px; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,.2);
+width:300px; font-family:sans-serif">
+  <h3>🧾 Hóa đơn</h3>
+  <div id="bill-products"></div>
+  <p><b>Tổng tiền:</b> <span id="bill-total"></span>đ</p>
+  <button onclick="closeBill()">Đóng</button>
+</div>
 </html>
