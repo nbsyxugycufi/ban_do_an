@@ -2,166 +2,119 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Đặt Đồ Ăn Online</title>
-
+<title>Bán Rau Online</title>
 <style>
 body {
-    font-family: Arial, sans-serif;
-    background: #f6f6f6;
-    margin: 0;
-}
-
-header {
-    background: #ff5722;
-    color: white;
+    font-family: Arial;
+    background: #f4f6f8;
     padding: 20px;
+}
+h1 {
+    background: #2ecc71;
+    color: white;
+    padding: 15px;
     text-align: center;
 }
-
-.container {
-    padding: 20px;
-}
-
-.food {
+.item {
     background: white;
-    padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 8px;
+    padding: 10px;
+    margin: 10px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-
 button {
-    background: #ff5722;
-    color: white;
+    padding: 6px 12px;
     border: none;
-    padding: 8px 12px;
-    border-radius: 5px;
+    background: #27ae60;
+    color: white;
     cursor: pointer;
 }
-
 button:hover {
-    opacity: 0.8;
+    background: #219150;
 }
-
-.cart {
-    background: white;
-    padding: 15px;
-    border-radius: 8px;
-}
-
 .total {
-    font-size: 18px;
     font-weight: bold;
-    margin-top: 10px;
-}
-
-.pay {
     margin-top: 15px;
+}
+.pay {
     width: 100%;
-    padding: 12px;
+    padding: 10px;
+    background: #e67e22;
     font-size: 16px;
 }
 </style>
 </head>
-<script>
-  const cart = [];
-  const cartEl = document.getElementById("cart");
-  const totalEl = document.getElementById("total");
 
-  function addToCart(name, price) {
-    cart.push({ name, price });
-    renderCart();
-  }
-
-  function renderCart() {
-    cartEl.innerHTML = "";
-    let total = 0;
-
-    cart.forEach(item => {
-      const li = document.createElement("li");
-      li.textContent = `${item.name} - ${item.price}đ`;
-      cartEl.appendChild(li);
-      total += item.price;
-    });
-
-    totalEl.textContent = total;
-  }
-</script>
 <body>
 
-<header>
-    <h1>🍜 QUÁN ĂN ONLINE LỚP 12A1</h1>
-    <p>Hãy chọn món để thanh toán ngay</p>
-</header>
+<h1>🥬 BÁN RAU ONLINE LỚP 12A1</h1>
 
-<div class="container">
-
-    <div class="food">
-        <span> Cà chua </span>
-        <span>10.000đ/200g</span>
-        <button onclick="add(10000)">Thêm</button>
-    </div>
-
-    <div class="food">
-        <span>Súp lơ baby</span>
-        <span>10.000/300g</span>
-        <button onclick="add(10000)">Thêm</button>
-    </div>
-
-    <div class="food">
-        <span>Củ dền</span>
-        <span>10.000/200g</span>
-        <button onclick="add(10000)">Thêm</button>
-    </div>
-  
-    <div class="food">
-        <span>Cải mù tạt</span>
-        <span> 5.000đ/mớ</span>
-        <button onclick="add(5000)">Thêm</button>
-    </div>
-  
-    <div class="food">
-        <span>Cải bó xôi</span>
-        <span>5.000đ/mớ</span>
-        <button onclick="add(5000)">Thêm</button>
-    </div> 
-
-    <div class="cart">
-        <h3>🛒 Giỏ hàng</h3>
-        <p id="count">Số món: 0</p>
-        <p class="total">Tổng tiền: <span id="total">0</span>đ</p>
-        <button class="pay" onclick="pay()">💳 Thanh toán</button>
-    </div>
-
+<div class="item">
+    <span>Cải bó xôi – 5.000đ / mớ</span>
+    <button onclick="add('Cải bó xôi', 5000)">Thêm</button>
 </div>
+
+<div class="item">
+    <span>Cải mù tạt – 5.000đ / mớ</span>
+    <button onclick="add('Cải mù tạt', 5000)">Thêm</button>
+</div>
+
+<div class="item">
+    <span>Cà chua – 10.000đ / 200g</span>
+    <button onclick="add('Cà chua (200g)', 10000)">Thêm</button>
+</div>
+
+<div class="item">
+    <span>Súp lơ baby – 10.000đ / 250g</span>
+    <button onclick="add('Súp lơ baby (250g)', 10000)">Thêm</button>
+</div>
+
+<div class="total">
+    🛒 Số món: <span id="count">0</span><br>
+    💰 Tổng tiền: <span id="total">0</span> đ
+</div>
+
+<br>
+<button class="pay" onclick="pay()">💳 Thanh toán</button>
 
 <script>
 let total = 0;
 let count = 0;
+let products = [];
 
-function add(price) {
+function add(name, price) {
     total += price;
     count++;
+    products.push(name);
+
     document.getElementById("total").innerText = total.toLocaleString();
-    document.getElementById("count").innerText = "Số món: " + count;
+    document.getElementById("count").innerText = count;
 }
 
 function pay() {
     if (total === 0) {
-        alert("Bạn chưa chọn món nào!");
-    } else {
-        alert(
-          "THANH TOÁN THÀNH CÔNG!\n" +
-            "Tổng tiền: " + total.toLocaleString() + "đ\n" +
-            "Cảm ơn bạn đã ủng hộ gian hàng của lớp 12A1 ❤️"
-        );
-        total = 0;
-        count = 0;
-        document.getElementById("total").innerText = "0";
-        document.getElementById("count").innerText = "Số món: 0";
+        alert("❗ Bạn chưa chọn món nào!");
+        return;
     }
+
+    let orderName = "Đơn hàng Rau Xanh";
+
+    alert(
+        "🧾 HÓA ĐƠN THANH TOÁN\n\n" +
+        "📦 Tên đơn: " + orderName + "\n\n" +
+        "🥬 Sản phẩm:\n- " + products.join("\n- ") + "\n\n" +
+        "📊 Tổng số món: " + count + "\n" +
+        "💰 Tổng tiền: " + total.toLocaleString() + " đ\n\n" +
+        "Cảm ơn bạn đã ghé gian hàng của chúng tôi, chúc bạn thật nhiều sức khoẻ và may mắn trong công việc ❤️"
+    );
+
+    // Reset
+    total = 0;
+    count = 0;
+    products = [];
+    document.getElementById("total").innerText = "0";
+    document.getElementById("count").innerText = "0";
 }
 </script>
 
